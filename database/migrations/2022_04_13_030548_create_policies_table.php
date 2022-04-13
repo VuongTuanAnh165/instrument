@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
+
 class CreatePoliciesTable extends Migration
 {
     /**
@@ -15,6 +17,10 @@ class CreatePoliciesTable extends Migration
     {
         Schema::create('policies', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('content')->nullable();
+            $table->string('name_link');
+            $table->integer('user_id')->nullable();
             $table->timestamps();
         });
     }
