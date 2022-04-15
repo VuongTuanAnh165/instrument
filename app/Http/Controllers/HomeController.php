@@ -6,14 +6,15 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
     /**
-     * Create a new controller instance.
+     * Show the application dashboard.
      *
-     * @return void
+     * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function __construct()
+    public function home()
     {
-        $this->middleware('auth');
+        return view('home');
     }
 
     /**
@@ -25,4 +26,5 @@ class HomeController extends Controller
     {
         return view('admin.home');
     }
+
 }
