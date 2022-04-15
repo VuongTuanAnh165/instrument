@@ -17,7 +17,10 @@ class categoryController extends Controller
      */
     public function index()
     {
-        //
+        $category = category::all();
+        return view('admin.category.index')->width([
+            'category', $category
+        ]);
     }
 
     /**
@@ -27,21 +30,9 @@ class categoryController extends Controller
      */
     public function create()
     {
-        //
-        $product_count = product::count();
-        $category_count = category::count();
-        $producttype_count = producttype::count();
-        $post_count = post::count();
-        $policies_count = Policies::count();
-        return view('admin.category.add')->with([
-            'product_count' => $product_count,
-            'category_count' => $category_count,
-            'producttype_count' => $producttype_count,
-            'post_count' => $post_count,
-            'policies_count' => $policies_count
-        ]);
-        
-
+        //    
+        $category = categories::all();
+        return view('admin.category.add')->width(['category', $category]);
     }
 
     /**
@@ -95,6 +86,14 @@ class categoryController extends Controller
     public function edit($id)
     {
         //
+        $category = category::find($id);
+        if ($category) {
+            return view('admin.category.edit')->with('category', $category);
+        }
+        else{
+            return redirect()->route('categories.index');
+        }
+   
     }
 
     /**
