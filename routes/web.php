@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [
+    'as' => 'homes.home',
+    'uses' => 'HomeController@home'
+]);
+
 Auth::routes();
 
 Route::prefix('admin')->middleware('auth')->group(function () {
