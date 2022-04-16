@@ -1,18 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
-use App\Traits\StorageImageTrait;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Http\Response as HttpResponse;
+
 use Illuminate\Http\Request;
-use App\Model\Categories;
-
-
-class CategoryController extends Controller
+use App\Model\producttype;
+class ProducttypeController extends Controller
 {
-    use StorageImageTrait;
     /**
      * Display a listing of the resource.
      *
@@ -20,10 +13,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //   
-        $category = Categories::all();
-        return view('admin.category.index')->with([
-            'category'=> $category
+        //
+        $producttye = producttye::all();
+        return view('admin.producttype.index')->with([
+            'producttye' => $producttye
         ]);
     }
 
@@ -35,11 +28,10 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        $category = Categories::all();
-        return view('admin.category.add')->with([
-            'category'=> $category
+        $producttye = producttye::all();
+        return view('admin.producttype.add')->with([
+            'producttye' => $producttye
         ]);
-
     }
 
     /**
@@ -54,24 +46,18 @@ class CategoryController extends Controller
         try {
             DB::beginTransaction();
             $data = [
-                'name' => $request->name,
-                'use_id' => Auth::user()->id,
-                'name_link' => $request->name
+                'category_id' => $request->category_id,
+                'type' => $request->type,
+                'name_link' => convert_name($request->name)
             ];
-            
-            $dataUploadImage = $this->storageTraitUpload($request, 'image', 'category');
-            if (!empty($dataUploadImage)){
-                $data['image'] = $dataUploadImage['file_path'];
-            }
-            $category = Categories::create($data);  
+            $categproducttyeory = producttye::create($data);
             DB::commit();
-            return redirect()->route('categories.index');
-        } catch (\Exception $exception){
+            return redirect()->route('producttye.index');
+        } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message: ' . $exception->getMessage() . ' ---Line: ' . $exception->getLine());
             return HttpResponse::HTTP_NOT_FOUND;
         }
-
     }
 
     /**
@@ -94,12 +80,12 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
-        $category = categories::find($id);
-        if ($category) {
-            return view('admin.category.edit')->with('category', $category);
+        $producttye = producttye::find($id);
+        if ($producttye) {
+            return view('admin.producttye.edit')->with('producttye', $producttye);
         }
         else{
-            return redirect()->route('categories.index');
+            return redirect()->route('producttye.index');
         }
     }
 
@@ -114,23 +100,19 @@ class CategoryController extends Controller
     {
         //
         try {
-            $category = Categories::find($id);
-            if ($category) {
+            $producttye = producttye::find($id);
+            if ($producttye) {
                 DB::beginTransaction();
                 $data = [
-                    'name' => $request->name,
-                    'use_id' => Auth::user()->id,
-                    'name_link' => $request->name
+                    'category_id' => $request->category_id,
+                    'type' => $request->type,
+                    'name_link' => convert_name($request->name)
                 ];
-                $dataUploadImage = $this->storageTraitUpload($request, 'image', 'category');
-                if (!empty($dataUploadImage)) {
-                    $data['image'] = $dataUploadImage['file_path'];
-                }
-                $category = $category->update($data);
+                $producttye = $producttye->update($data);
                 DB::commit();
-                return redirect()->route('categories.index');
+                return redirect()->route('producttype.index');
             } else {
-                return redirect()->route('categories.index');
+                return redirect()->route('producttype.index');
             }
         } catch (\Exception $exception) {
             DB::rollBack();
@@ -149,14 +131,14 @@ class CategoryController extends Controller
     {
         //
         try {
-            $category = Categories::find($id);
-            if ($category) {
+            $producttye = producttye::find($id);
+            if ($producttye) {
                 DB::beginTransaction();
-                $category->delete();
+                $producttye->delete();
                 DB::commit();
-                return redirect()->route('categories.index');
+                return redirect()->route('producttye.index');
             } else {
-                return redirect()->route('categories.index');
+                return redirect()->route('producttye.index');
             }
         } catch (\Exception $exception) {
             DB::rollBack();
