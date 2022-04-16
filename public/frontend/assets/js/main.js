@@ -79,7 +79,7 @@ We may release future updates so it will overwrite this file. it's better and sa
   ==========================*/
 
   var headeraH = $(".header").outerHeight(),
-      headerM = $(".header-main.love-sticky");
+    headerM = $(".header-main.love-sticky");
   headerM.parent(".header").css({
     height: headeraH + "px"
   });
@@ -206,7 +206,7 @@ We may release future updates so it will overwrite this file. it's better and sa
   ====================================*/
 
   var $map = $('[data-trigger="map"]'),
-      $mapOps;
+    $mapOps;
 
   if ($map.length) {
     // Map Options
@@ -216,10 +216,10 @@ We may release future updates so it will overwrite this file. it's better and sa
       $map.css("min-height", "530px");
       $map.each(function () {
         var $t = $(this),
-            map,
-            lat,
-            lng,
-            zoom;
+          map,
+          lat,
+          lng,
+          zoom;
         $mapOps = $t.data("map-options");
         lat = parseFloat($mapOps.latitude, 10);
         lng = parseFloat($mapOps.longitude, 10);
@@ -398,16 +398,16 @@ We may release future updates so it will overwrite this file. it's better and sa
 
   if ($backToTopBtn.length) {
     var scrollTrigger = 400,
-        // px
-    backToTop = function backToTop() {
-      var scrollTop = $(window).scrollTop();
+      // px
+      backToTop = function backToTop() {
+        var scrollTop = $(window).scrollTop();
 
-      if (scrollTop > scrollTrigger) {
-        $backToTopBtn.addClass("show");
-      } else {
-        $backToTopBtn.removeClass("show");
-      }
-    };
+        if (scrollTop > scrollTrigger) {
+          $backToTopBtn.addClass("show");
+        } else {
+          $backToTopBtn.removeClass("show");
+        }
+      };
 
     backToTop();
     $(window).on("scroll", function () {
@@ -572,9 +572,19 @@ We may release future updates so it will overwrite this file. it's better and sa
   /*==================================
   15: Countdown Timer
   ====================================*/
+  var dateNow = new Date();
+  dateNow.setMinutes(dateNow.getMinutes() + 30);
+  var monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var monthNow = monthsArray[dateNow.getMonth()];
+  var dayNow = dateNow.getDate();
+  var yearNow = dateNow.getFullYear();
+  var hourNow = dateNow.getHours();
+  var minNow = dateNow.getMinutes();
+  var secNow = dateNow.getSeconds();
+  var completeDate = monthNow + " " + dayNow + ", " + yearNow + " " + hourNow + ":" + minNow + ":" + secNow;
 
-  $(".countdown").countdown({
-    date: "08/16/2022 23:59:59"
+  $(function () {
+    $('.countdown').countdown({ date: completeDate });
   });
   /*==================================
   16: Magnific Popup
