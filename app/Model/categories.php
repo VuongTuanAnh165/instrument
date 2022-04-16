@@ -8,6 +8,7 @@ use APP\Model\products;
 use APP\Model\producttypes;
 class categories extends Model
 {
+    protected $guarded=[];
     //
     public function user()
     {

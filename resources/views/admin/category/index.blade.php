@@ -39,7 +39,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($categories as $category)
+                                    @foreach($category as $category)
                                     <tr>
                                         <td>{{$category->name}}</td>
                                         <td><img width="100px" src="{{$category->image}}"></td>

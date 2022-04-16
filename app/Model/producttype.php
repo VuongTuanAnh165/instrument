@@ -12,4 +12,6 @@ class producttype extends Model
     {
         return $this->belongsTo(categories::class, 'category_id');
     }
+
+   
 }

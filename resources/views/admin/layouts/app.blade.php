@@ -47,9 +47,9 @@
     <link rel="stylesheet" href="{{asset('plugins/codemirror/theme/monokai.css')}}">
     <!-- SimpleMDE -->
     <link rel="stylesheet" href="{{asset('plugins/simplemde/simplemde.min.css')}}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{$company->logo}}">
-    <link rel="icon" type="image/png" href="{{$company->logo}}" sizes="32x32">
-    <link rel="icon" type="image/png" href="{{$company->logo}}" sizes="16x16">
+    <link rel="apple-touch-icon" sizes="180x180" href="">
+    <link rel="icon" type="image/png" href="" sizes="32x32">
+    <link rel="icon" type="image/png" href="" sizes="16x16">
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -62,7 +62,7 @@
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{$company->logo}}" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="" alt="AdminLTELogo" height="60" width="60">
         </div>
 
         @include('admin.partials.header')

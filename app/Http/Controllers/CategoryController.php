@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\categories;
-use App\Model\products;
-use App\Model\producttype;
-use App\Model\posts;
-use App\Model\policies;
-class categoryController extends Controller
+use App\Model\Categories;
+
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +14,10 @@ class categoryController extends Controller
      */
     public function index()
     {
-        $category = category::all();
-        return view('admin.category.index')->width([
-            'category', $category
+        //   
+        $category = Categories::all();
+        return view('admin.category.index')->with([
+            'category'=> $category
         ]);
     }
 
@@ -30,9 +28,12 @@ class categoryController extends Controller
      */
     public function create()
     {
-        //    
-        $category = categories::all();
-        return view('admin.category.add')->width(['category', $category]);
+        //
+        $category = Categories::all();
+        return view('admin.category.add')->with([
+            'category'=> $category
+        ]);
+
     }
 
     /**
@@ -93,7 +94,6 @@ class categoryController extends Controller
         else{
             return redirect()->route('categories.index');
         }
-   
     }
 
     /**
