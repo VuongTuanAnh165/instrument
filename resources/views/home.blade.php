@@ -12,32 +12,38 @@
         <div class="row">
             <div class="col-lg-6">
                 <!-- Banner Content -->
-                <div class="banner-content text-white mt-xl-5 pt-xl-2 mb-5 mb-lg-0">
-                    <h1>Digital Collection & Sell on <span>NFTs</span> Marketplace</h1>
-                    <ul class="list-info text-white">
-                        <li>
-                            <h4><span class="counter">3</span>k<span class="c1">+</span></h4>
-                            <h6>Artwork</h6>
-                        </li>
-                        <li>
-                            <h4><span class="counter">9</span>k<span class="c1">+</span></h4>
-                            <h6>Auction</h6>
-                        </li>
-                        <li>
-                            <h4><span class="counter">6</span>k<span class="c1">+</span></h4>
-                            <h6>Artist</h6>
-                        </li>
-                    </ul>
-                    <div class="button-group">
-                        <a href="create.html" class="btn">
-                            <img src="{{asset('frontend/assets/img/icons/discover.svg')}}" alt="" class="svg">
-                            Discover
-                        </a>
-                        <a href="create.html" class="btn btn-link">
-                            <img src="{{asset('frontend/assets/img/icons/create-icon.svg')}}" alt="" class="svg">
-                            Create NFT
-                        </a>
-                    </div>
+                <div class="banner-content text-white mt-xl-0 pt-xl-0 mb-5 mb-lg-0">
+                    <form action="sendmail.php" class="contact-form">
+                        <!--Start Contact Form -->
+                        <h3 class="pb-1">Liên hệ với chúng tôi</h3>
+                        <div class="form-group">
+                            <label for="name">Tên đầy đủ</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Họ và tên...">
+                        </div>
+                        <div class="form-group">
+                            <label for="phonenumber">Số điện thoại</label>
+                            <input type="text" name="phonenumber" class="form-control" id="phonenumber" placeholder="+84......">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Địa chỉ Email</label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Email...">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Zalo</label>
+                            <input type="text" name="zalo" class="form-control" id="zalo" placeholder="Tài khoản zalo...">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Lời nhắn</label>
+                            <textarea id="message" name="message" class="form-control" placeholder="Viết gì đó..."></textarea>
+                        </div>
+                        <div class="pt-2">
+                            <button type="submit" class="btn">
+                                <img src="assets/img/icons/btn_submit.svg" alt="" class="svg">Gửi
+                            </button>
+                        </div>
+                        <div class="form-response mt-3"></div>
+                    </form>
+                    <!-- End Contact Form -->
                 </div>
                 <!-- End Banner Content -->
             </div>
