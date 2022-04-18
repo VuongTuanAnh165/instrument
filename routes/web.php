@@ -24,4 +24,33 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         'as' => 'homes.index',
         'uses' => 'HomeController@index'
     ]);
+    Route::prefix('categories')->group(function () {
+        Route::get('/index', [
+            'as' => 'categories.index',
+            'uses' => 'CategoryController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'categories.create',
+            'uses' => 'CategoryController@create'
+        ]);
+        Route::post('/store', [
+            'as' => 'categories.store',
+            'uses' => 'CategoryController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'categories.edit',
+            'uses' => 'CategoryController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'categories.update',
+            'uses' => 'CategoryController@update'
+        ]);
+        Route::get('/destroy/{id}', [
+            'as' => 'categories.destroy',
+            'uses' => 'CategoryController@destroy'
+        ]);
+    });
+    
 });
+
+
