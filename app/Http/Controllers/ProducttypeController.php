@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Http\Request;
 use App\Model\producttype;
+use App\Model\categories;
+use App\Traits\StorageImageTrait;
+use App\Http\Controllers\Controller;
+
+use App\Http\Requests\CategoryRequest;
+
 class ProducttypeController extends Controller
 {
+    use StorageImageTrait;
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +25,9 @@ class ProducttypeController extends Controller
     public function index()
     {
         //
-        $producttye = producttye::all();
+        $producttype = producttype::all();
         return view('admin.producttype.index')->with([
-            'producttye' => $producttye
+            'producttype' => $producttype
         ]);
     }
 
@@ -28,9 +39,11 @@ class ProducttypeController extends Controller
     public function create()
     {
         //
-        $producttye = producttye::all();
+        $category = Categories::all();
+        $producttype = producttype::all();
         return view('admin.producttype.add')->with([
-            'producttye' => $producttye
+            'producttye' => $producttype,
+            'category' =>$category
         ]);
     }
 
@@ -43,21 +56,19 @@ class ProducttypeController extends Controller
     public function store(Request $request)
     {
         //
-        try {
+        
             DB::beginTransaction();
             $data = [
-                'category_id' => $request->category_id,
+
+                'categories_id' => $request->input('categories_id'),
                 'type' => $request->type,
-                'name_link' => convert_name($request->name)
+                'name_link' => $request->type
             ];
-            $categproducttyeory = producttye::create($data);
+           
+            $producttye = producttype::create($data);
             DB::commit();
-            return redirect()->route('producttye.index');
-        } catch (\Exception $exception) {
-            DB::rollBack();
-            Log::error('Message: ' . $exception->getMessage() . ' ---Line: ' . $exception->getLine());
-            return HttpResponse::HTTP_NOT_FOUND;
-        }
+            return redirect()->route('producttype.index');
+       
     }
 
     /**
@@ -80,12 +91,16 @@ class ProducttypeController extends Controller
     public function edit($id)
     {
         //
-        $producttye = producttye::find($id);
+        $producttye = producttype::find($id);
+        $category = Categories::all();
         if ($producttye) {
-            return view('admin.producttye.edit')->with('producttye', $producttye);
+            return view('admin.producttype.edit')->with([
+                'producttype'=> $producttye,
+                'category' => $category
+        ]);
         }
         else{
-            return redirect()->route('producttye.index');
+            return redirect()->route('producttype.index');
         }
     }
 
@@ -100,13 +115,13 @@ class ProducttypeController extends Controller
     {
         //
         try {
-            $producttye = producttye::find($id);
+            $producttye = producttype::find($id);
             if ($producttye) {
                 DB::beginTransaction();
                 $data = [
-                    'category_id' => $request->category_id,
+                    'categories_id' => $request->input('categories_id'),
                     'type' => $request->type,
-                    'name_link' => convert_name($request->name)
+                    'name_link' => $request->type
                 ];
                 $producttye = $producttye->update($data);
                 DB::commit();
@@ -131,15 +146,16 @@ class ProducttypeController extends Controller
     {
         //
         try {
-            $producttye = producttye::find($id);
-            if ($producttye) {
+            $producttype = producttype::find($id);
+            if ($producttype) {
                 DB::beginTransaction();
-                $producttye->delete();
+                $producttype->delete();
                 DB::commit();
-                return redirect()->route('producttye.index');
+                return redirect()->route('producttype.index');
             } else {
-                return redirect()->route('producttye.index');
+                return redirect()->route('producttype.index');
             }
+            
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message: ' . $exception->getMessage() . ' ---Line: ' . $exception->getLine());

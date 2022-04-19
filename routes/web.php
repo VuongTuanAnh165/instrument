@@ -50,6 +50,33 @@ Route::prefix('admin')->middleware('auth')->group(function () {
             'uses' => 'CategoryController@destroy'
         ]);
     });
+
+    Route::prefix('producttype')->group(function () {
+        Route::get('/index', [
+            'as' => 'producttype.index',
+            'uses' => 'ProducttypeController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'producttype.create',
+            'uses' => 'ProducttypeController@create'
+        ]);
+        Route::post('/store', [
+            'as' => 'producttype.store',
+            'uses' => 'ProducttypeController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'producttype.edit',
+            'uses' => 'ProducttypeController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'producttype.update',
+            'uses' => 'ProducttypeController@update'
+        ]);
+        Route::get('/destroy/{id}', [
+            'as' => 'producttype.destroy',
+            'uses' => 'ProducttypeController@destroy'
+        ]);
+    });
     
 });
 
