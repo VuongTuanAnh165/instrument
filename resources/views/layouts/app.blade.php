@@ -42,11 +42,11 @@
 <body data-bg-img="{{asset('frontend/assets/img/bg/page-bg.png')}}">
 
     <!-- Preloader -->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="preloader-inner">
             <img src="{{asset('frontend/assets/img/icons/text.svg')}}" alt="" class="svg preloader-svg">
         </div>
-    </div>
+    </div> -->
     <!-- End Preloader -->
     <!-- header -->
     @include('partials.header')
