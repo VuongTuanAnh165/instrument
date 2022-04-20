@@ -15,6 +15,11 @@ class CreateLandingpagesTable extends Migration
     {
         Schema::create('landingpages', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('name_link');
+            $table->string('link');
+            $table->string('image');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
