@@ -34,6 +34,28 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-header">Quản lý loại khách hàng</li>
+                <li class="nav-item">
+                    <a href="{{ route('customertypes.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                        <p>
+                            Loại khách hàng
+                            <span class="badge badge-info right"></span>
+                            <span class="badge badge-info right"></span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header">Quản lý khách hàng</li>
+                <li class="nav-item">
+                    <a href="{{ route('customers.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                        <p>
+                            Khách hàng
+                            <span class="badge badge-info right"></span>
+                            <span class="badge badge-info right"></span>
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
