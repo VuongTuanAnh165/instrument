@@ -13,9 +13,11 @@
             <div class="col-lg-6">
                 <!-- Banner Content -->
                 <div class="banner-content text-white mt-xl-0 pt-xl-0 mb-5 mb-lg-0">
-                    <form action="sendmail.php" class="contact-form">
+                    <form action="{{route('customers.store')}}" class="contact-form" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <!--Start Contact Form -->
                         <h3 class="pb-1">Liên hệ với chúng tôi</h3>
+                        <input type="hidden" name="customertype_id" value=1>
                         <div class="form-group">
                             <label for="name">Tên đầy đủ</label>
                             <input type="text" name="name" class="form-control" id="name" placeholder="Họ và tên...">
@@ -23,8 +25,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="phonenumber">Số điện thoại</label>
-                                    <input type="text" name="phonenumber" class="form-control" id="phonenumber" placeholder="+84......">
+                                    <label for="phone">Số điện thoại</label>
+                                    <input type="text" name="phone" class="form-control" id="phone" placeholder="+84......">
                                 </div>
                             </div>
                             <div class="col-lg-6">
